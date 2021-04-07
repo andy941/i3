@@ -17,7 +17,7 @@ set $mod Mod1
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 2
+default_border pixel 1
 default_floating_border pixel 2
 #for_window [class="^.*"] border pixel 3
 
@@ -224,7 +224,7 @@ exec --no-startup-id geary
 
 # Open applications on specific workspaces
 for_window [class="firefox"] move to workspace $ws2
-for_window [class="calibre"] move to  workspace $ws4
+for_window [class="calibre"] move to  workspace $ws5
 for_window [class="Spotify"] move to workspace $ws7
 for_window [class="Geary"] move to workspace $ws8
 for_window [class="discord"] move to  workspace $ws9
@@ -398,7 +398,7 @@ bar {
 #                      border  backgr. text
         focused_workspace  #16E8B0 #16E8B0 #OOOOOO
         active_workspace   #595B5B #353836 #OOOOOO
-        inactive_workspace #FFFFFF $term_background #FFFFFF
+        inactive_workspace $term_background $term_background #FFFFFF
         binding_mode       #16a085 #2C2C2C #F9FAF9
         urgent_workspace   #16a085 #FDF6E3 #E5201D
     }
@@ -423,7 +423,7 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 2
+gaps inner 0
 gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
@@ -436,7 +436,7 @@ gaps outer 0
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-# smart_borders on
+smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
