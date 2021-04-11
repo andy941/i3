@@ -155,17 +155,17 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "1: <b>1</b> -   "
-set $ws2 "2: <b>2</b> -   "
-set $ws3 "3: <b>3</b> -   "
-set $ws4 "4: <b>4</b> -   "
-set $ws5 "5: <b>5</b> -   "
-set $ws6 "6: <b>6</b> -   "
+set $ws1 "1: <b>1</b> "
+set $ws2 "2: <b>2</b> "
+set $ws3 "3: <b>3</b> "
+set $ws4 "4: <b>4</b> "
+set $ws5 "5: <b>5</b> "
+set $ws6 "6: <b>6</b> "
 
-set $ws7 "7: <b>7</b> -   "
-set $ws8 "8: <b>8</b> -   "
-set $ws9 "9: <b>9</b> -   "
-set $ws10 "10: <b>10</b> -   "
+set $ws7 "7: <b>7</b> "
+set $ws8 "8: <b>8</b> "
+set $ws9 "9: <b>9</b> "
+set $ws10 "10: <b>10</b> "
 
 # set monitor output
 workspace $ws1 output primary
@@ -391,14 +391,14 @@ bar {
 	strip_workspace_numbers yes
 
     colors {
-        background $term_background
+        background #2F3D44
         statusline #FFFFFF
         separator  #16E8B0
 
 #                      border  backgr. text
         focused_workspace  #16E8B0 #16E8B0 #OOOOOO
         active_workspace   #595B5B #353836 #OOOOOO
-        inactive_workspace $term_background $term_background #FFFFFF
+        inactive_workspace #2F3D44 #2F3D44 #FFFFFF
         binding_mode       #16a085 #2C2C2C #F9FAF9
         urgent_workspace   #16a085 #FDF6E3 #E5201D
     }
@@ -411,12 +411,12 @@ bindsym $mod+m bar mode toggle
 # class                   border  backgr. text    indic.   child_border
   #client.focused          #556064 #556064 #80FFF9 #FDF6E3
   client.focused          #16E8B0 #16E8B0 #16E8B0 #16E8B0
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #2F3D44
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
-  client.background       #2B2C2B
+  client.background       #2F3D44
 
 #############################
 ### settings for i3-gaps: ###
@@ -499,6 +499,10 @@ set $dark_color gruvbox_dark.yaml
 
 # Toggle between light and dark colorscheme
 bindsym $mod+Shift+n exec alacritty-colorscheme -C $color_dir -t $light_color $dark_color
+
+# Passmenu keybinding
+bindsym $mod+Shift+p exec passmenu -m primary
+
 #___________________________________________________________________________________________________
 
 
