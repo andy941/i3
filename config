@@ -409,7 +409,6 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  #client.focused          #556064 #556064 #80FFF9 #FDF6E3
   client.focused          #16E8B0 #16E8B0 #16E8B0 #16E8B0
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #2F3D44
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
@@ -502,6 +501,11 @@ bindsym $mod+Shift+n exec alacritty-colorscheme -C $color_dir -t $light_color $d
 
 # Passmenu keybinding
 bindsym $mod+Shift+p exec passmenu -m primary
+
+# unclutter helps hiding the louse pointer after x seconds
+exec_always --no-startup-id killall unclutter
+exec_always --no-startup-id unclutter --timeout 3 #--ignore-scrolling
+
 
 #___________________________________________________________________________________________________
 
