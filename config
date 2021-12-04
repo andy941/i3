@@ -79,9 +79,8 @@ bindsym $mod+F5 exec terminal -e 'mocp'
 # bindsym $mod+t exec --no-startup-id pkill picom
 # bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-# bindsym Print exec --no-startup-id                      "i3-scrot   "
-# bindsym --release $mod+y exec --no-startup-id           "i3-scrot -w"
-# bindsym --release $mod+Shift+y exec --no-startup-id     "i3-scrot -s"
+
+
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 focus_follows_mouse no
@@ -523,7 +522,7 @@ bindsym $mod+Shift+a exec alacritty-colorscheme -C $color_dir -T && \
 
 
 # Passmenu keybinding
-bindsym $mod+Shift+p exec passmenu -m primary
+bindsym $mod+p exec passmenu -m primary
 
 # unclutter helps hiding the mouse pointer after x seconds
 exec_always --no-startup-id killall unclutter
@@ -534,3 +533,17 @@ exec_always --no-startup-id xmodmap ~/.Xmodmap
 
 # Joplin keybinding
 bindsym $mod+Shift+w exec joplin-james-carroll.joplin
+
+# Screenshot mode
+bindsym Print mode "$screenshot"
+set $screenshot Screenshot: Yank = [d]esktop [w]indow [s]election, Save = [Shift+D]esktop [Shift+W]indow [Shift+S]election
+mode "$screenshot" {
+		bindsym d exec --no-startup-id "i3-scrot -dc"
+		bindsym w exec --no-startup-id "i3-scrot -wc"
+		bindsym --release s exec --no-startup-id "i3-scrot -sc"
+		bindsym Shift+D exec --no-startup-id "i3-scrot -d"
+		bindsym Shift+W exec --no-startup-id "i3-scrot -w"
+		bindsym --release Shift+S exec --no-startup-id "i3-scrot -s"
+		bindsym Escape mode "default"
+		bindsym Return mode "default"
+}
