@@ -155,17 +155,17 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "1: <b>1</b> "
-set $ws2 "2: <b>2</b> "
-set $ws3 "3: <b>3</b> "
-set $ws4 "4: <b>4</b> "
-set $ws5 "5: <b>5</b> "
-set $ws6 "6: <b>6</b> "
+set $ws1 "1: <b>1</b>  "
+set $ws2 "2: <b>2</b>  "
+set $ws3 "3: <b>3</b>  "
+set $ws4 "4: <b>4</b>  "
+set $ws5 "5: <b>5</b>  "
+set $ws6 "6: <b>6</b>  "
 
-set $ws7 "7: <b>7</b> "
-set $ws8 "8: <b>8</b> "
-set $ws9 "9: <b>9</b> "
-set $ws10 "10: <b>10</b> "
+set $ws7 "7: <b>7</b>  "
+set $ws8 "8: <b>8</b>  "
+set $ws9 "9: <b>9</b>  "
+set $ws10 "10: <b>10</b>  "
 
 # set monitor output
 workspace $ws1 output primary
