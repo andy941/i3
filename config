@@ -33,7 +33,7 @@ bindsym $mod+n border normal
 # is used in the bar {} block below.
 #font xft:URWGothic-Book, FontAwesome 15
 # font pango:monospace Bold, NerdFonts 11
-font pango:Roboto Mono for Powerline, NerdFonts 12
+font pango:RobotoMono NerdFont, NerdFonts 12
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -400,7 +400,7 @@ bar {
 	bindsym button5 nop
     #font xft:URWGothic-Book, FontAwesome 11
     #font pango:monospace Bold, NerdFonts 11
-    font pango:Roboto Mono for Powerline, NerdFonts 11
+    font pango:RobotoMono NerdFont, NerdFonts 11
 	strip_workspace_numbers yes
 
     colors {
