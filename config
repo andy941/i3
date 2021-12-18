@@ -391,6 +391,8 @@ set $darkgray #282828
 bar {
     i3bar_command i3bar
 	status_command i3status -c ~/.i3/i3status.conf
+	#separator_symbol  
+	separator_symbol " "
 	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
