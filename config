@@ -17,8 +17,8 @@ set $mod Mod1
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
-default_floating_border pixel 2
+default_border pixel 0
+default_floating_border pixel 0
 #for_window [class="^.*"] border pixel 3
 
 # Hide borders
@@ -390,7 +390,6 @@ set $darkgray #282828
 bar {
     i3bar_command i3bar
 	status_command i3status -c ~/.i3/i3status.conf
-	#separator_symbol  
 	separator_symbol " "
 	position bottom
 
@@ -405,6 +404,7 @@ bar {
     colors {
             # bar background color
             background $bg
+
             # text color used for blocks that do not have a color specified.
             statusline $fg
 
@@ -437,7 +437,7 @@ client.background       $bg
 #############################
 
 # Set inner/outer gaps
-gaps inner 0
+gaps inner 5
 gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
@@ -446,11 +446,11 @@ gaps outer 0
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+# smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+# smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -525,9 +525,6 @@ exec_always --no-startup-id sleep 3; unclutter --timeout 3 & #--ignore-scrolling
 
 # Remap keys (mainly CapsLock -> Esc)
 exec_always --no-startup-id xmodmap ~/.Xmodmap
-
-# Joplin keybinding
-bindsym $mod+Shift+w exec joplin-james-carroll.joplin
 
 # Screenshot mode
 bindsym Print mode "$screenshot"
