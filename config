@@ -1,6 +1,58 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# FONTS
+
+set $font pango:RobotoMono NerdFont 12
+set $font_dmenu pango:RobotoMono-NerdFont-12
+
+# COLORS
+
+# Color palette used for the terminal ( ~/.Xresources file )
+# Colors are gathered based on the documentation:
+# https://i3wm.org/docs/userguide.html#xresources
+# Change the variable name at the place you want to match the color
+# https://i3wm.org/docs/userguide.html#xresources
+# Change the variable name at the place you want to match the color
+# of your terminal like this:
+# [example]
+# If you want your bar to have the same background color as your 
+# terminal background change the line 362 from:
+# background #14191D
+# to:
+# background $term_background
+# Same logic applied to everything else.
+set_from_resource $term_background background
+set_from_resource $term_foreground foreground
+set_from_resource $term_color0     color0
+set_from_resource $term_color1     color1
+set_from_resource $term_color2     color2
+set_from_resource $term_color3     color3
+set_from_resource $term_color4     color4
+set_from_resource $term_color5     color5
+set_from_resource $term_color6     color6
+set_from_resource $term_color7     color7
+set_from_resource $term_color8     color8
+set_from_resource $term_color9     color9
+set_from_resource $term_color10    color10
+set_from_resource $term_color11    color11
+set_from_resource $term_color12    color12
+set_from_resource $term_color13    color13
+set_from_resource $term_color14    color14
+set_from_resource $term_color15    color15
+
+###############################
+#### Gruvbox Material Dark ####
+###############################
+set $bg       "#282828"
+set $fg       "#d4be98"
+set $red      "#ea6962"
+set $orange   "#e78a4e"
+set $green    "#a9b665"
+set $blue     "#7daea3"
+set $purple   "#d3869b"
+set $aqua     "#89b482"
+set $darkgray "#282828"
 #___________________________________________________________________________________________________
 # handle a second screen
 exec_always --no-startup-id bash /home/andrea/.i3/SecondScreen.sh
@@ -33,7 +85,7 @@ bindsym $mod+n border normal
 # is used in the bar {} block below.
 #font xft:URWGothic-Book, FontAwesome 15
 # font pango:monospace Bold, NerdFonts 11
-font pango:RobotoMono NerdFont, NerdFonts 12
+font $font
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -45,7 +97,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id dmenu_recency -m primary \
+	-p ' ' -l 30 -x 20 -y 20 -w 400 -i -fn $font_dmenu -nb $bg -nf $fg -sf $bg -sb $aqua
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -338,51 +391,6 @@ exec --no-startup-id xautolock -time 120 -locker :lock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
-# Color palette used for the terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your 
-# terminal background change the line 362 from:
-# background #14191D
-# to:
-# background $term_background
-# Same logic applied to everything else.
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
-
-###############################
-#### Gruvbox Material Dark ####
-###############################
-set $bg       #282828
-set $fg       #d4be98
-set $red      #ea6962
-set $orange   #e78a4e
-set $green    #a9b665
-set $blue     #7daea3
-set $purple   #d3869b
-set $aqua     #89b482
-set $darkgray #282828
 
 #############
 #### BAR ####
@@ -398,7 +406,7 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-    font pango:RobotoMono NerdFont, NerdFonts 11
+    font $font
 	strip_workspace_numbers yes
 
     colors {
@@ -517,7 +525,8 @@ bindsym $mod+Shift+a exec alacritty-colorscheme -C $color_dir toggle && \
 
 
 # Passmenu keybinding
-bindsym $mod+p exec passmenu -m primary
+bindsym $mod+p exec passmenu -m primary \
+	-p ' ' -l 30 -x 20 -y 20 -w 400 -i -fn $font_dmenu -nb $bg -nf $fg -sf $bg -sb $blue 
 
 # unclutter helps hiding the mouse pointer after x seconds
 exec_always --no-startup-id killall unclutter
