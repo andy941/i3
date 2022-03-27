@@ -207,17 +207,17 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "1: <b>1</b>  "
-set $ws2 "2: <b>2</b>  "
-set $ws3 "3: <b>3</b>  "
-set $ws4 "4: <b>4</b>  "
-set $ws5 "5: <b>5</b>  "
-set $ws6 "6: <b>6</b> ﴬ "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
 
-set $ws7 "7: <b>7</b>  "
-set $ws8 "8: <b>8</b>  "
-set $ws9 "9: <b>9</b>  "
-set $ws10 "10: <b>10</b>  "
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # set monitor output
 workspace $ws1 output primary
@@ -395,46 +395,51 @@ exec_always --no-startup-id fix_xcursor
 #############
 #### BAR ####
 #############
-bar {
-    i3bar_command i3bar
-	status_command i3status -c ~/.i3/i3status.conf
-	separator_symbol " "
-	position bottom
+exec_always --no-startup-id $HOME/.i3/polybar_launcher.sh
+bindsym $mod+m killall -q polybar; $HOME/.i3/polybar_launcher.sh & 
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
- 	tray_output primary
 
-	bindsym button4 nop
-	bindsym button5 nop
-    font $font
-	strip_workspace_numbers yes
-
-    colors {
-            # bar background color
-            background $bg
-
-            # text color used for blocks that do not have a color specified.
-            statusline $fg
-
-            # workspaces section
-            #                    border     backgr.     text
-            focused_workspace    $orange    $orange     $bg
-            inactive_workspace   $bg        $aqua       $bg
-            active_workspace     $bg        $blue       $bg
-            urgent_workspace     $red       $red        $bg
-
-        }
-}
-
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# # Fallback to i3bar if necessary
+# bar {
+#     i3bar_command i3bar
+# 	status_command i3status -c ~/.i3/i3status.conf
+# 	separator_symbol " "
+# 	position bottom
+# 
+# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+#  	tray_output primary
+# 
+# 	bindsym button4 nop
+# 	bindsym button5 nop
+#     font $font
+# 	strip_workspace_numbers yes
+# 
+#     colors {
+#             # bar background color
+#             background $bg
+# 
+#             # text color used for blocks that do not have a color specified.
+#             statusline $fg
+# 
+#             # workspaces section
+#             #                    border     backgr.     text
+#             focused_workspace    $orange    $orange     $bg
+#             inactive_workspace   $bg        $aqua       $bg
+#             active_workspace     $bg        $blue       $bg
+#             urgent_workspace     $red       $red        $bg
+# 
+#         }
+# }
+# 
+# # hide/unhide i3status bar
+# bindsym $mod+m bar mode toggle
 
 #######################
 #### i3 appearance ####
 #######################
 #       Gruvbox Theme   brdr        bg          text    indictr     chld_brdr
 client.focused          $orange     $orange     $bg     $orange     $orange
-client.focused_inactive $bg         $bg       $bg     $bg       $bg
+client.focused_inactive $bg         $bg         $bg     $bg         $bg
 client.unfocused        $bg         $bg         $bg     $bg         $bg
 client.urgent           $red        $red        $bg     $red        $red
 client.placeholder      $bg         $bg         $bg     $bg         $bg
@@ -445,7 +450,7 @@ client.background       $bg
 #############################
 
 # Set inner/outer gaps
-gaps inner 5
+gaps inner 3
 gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
