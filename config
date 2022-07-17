@@ -3,8 +3,8 @@
 
 # FONTS
 
-set $font pango:RobotoMono NerdFont 12
-set $font_dmenu pango:RobotoMono-NerdFont-12
+set $font pango:JetBrainsMono NerdFont 12
+set $font_dmenu JetBrainsMono-NerdFont-12
 
 # COLORS
 
@@ -69,8 +69,8 @@ set $mod Mod1
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 0
-default_floating_border pixel 0
+default_border pixel 2
+default_floating_border pixel 2
 #for_window [class="^.*"] border pixel 3
 
 # Hide borders
@@ -91,7 +91,8 @@ font $font
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+#bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+q kill
@@ -269,7 +270,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # open applications at start 
-exec --no-startup-id alacritty
+exec --no-startup-id kitty
 exec --no-startup-id firefox
 
 # Open applications on specific workspaces
@@ -450,7 +451,7 @@ client.background       $bg
 #############################
 
 # Set inner/outer gaps
-gaps inner 3
+gaps inner 5
 gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
@@ -459,11 +460,11 @@ gaps outer 0
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-# smart_gaps on
+smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-# smart_borders on
+smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -513,7 +514,7 @@ exec_always fusermount -u ~/Drives/gdrive/
 exec_always sleep 2; killall rclone
 exec_always sleep 15; rclone mount --daemon finoccha: ~/Drives/gdrive/ 
 
-# split wondows on the short edge, github page --> https://github.com/olemartinorg/i3-alternating-layout
+# split windows on the short edge, github page --> https://github.com/olemartinorg/i3-alternating-layout
 exec_always --no-startup-id python ~/.i3/alternating_layouts.py
 
 # Alacritty terminal colorschemes configuration
