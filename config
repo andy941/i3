@@ -3,8 +3,8 @@
 
 # FONTS
 
-set $font pango:JetBrainsMono NerdFont 12
-set $font_dmenu JetBrainsMono-NerdFont-12
+set $font pango:JetBrainsMono NerdFont 14
+set $font_dmenu JetBrainsMono-NerdFont-14
 
 # COLORS
 
@@ -16,7 +16,7 @@ set $font_dmenu JetBrainsMono-NerdFont-12
 # Change the variable name at the place you want to match the color
 # of your terminal like this:
 # [example]
-# If you want your bar to have the same background color as your 
+# If you want your bar to have the same background color as your
 # terminal background change the line 362 from:
 # background #14191D
 # to:
@@ -41,18 +41,41 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-###############################
-#### Gruvbox Material Dark ####
-###############################
-set $bg       "#282828"
-set $fg       "#d4be98"
-set $red      "#ea6962"
-set $orange   "#e78a4e"
-set $green    "#a9b665"
-set $blue     "#7daea3"
-set $purple   "#d3869b"
-set $aqua     "#89b482"
-set $darkgray "#282828"
+
+####################
+#### Catppuccin ####
+####################
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
+
+set $fg        #CDD6F4
+set $bg        #1E1E2E
+set $sel_fg    #1E1E2E
+set $sel_bg    #F5E0DC
+
 #___________________________________________________________________________________________________
 # handle a second screen
 exec_always --no-startup-id bash /home/andrea/.i3/SecondScreen.sh
@@ -69,9 +92,10 @@ set $mod Mod1
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 2
-default_floating_border pixel 2
-#for_window [class="^.*"] border pixel 3
+#default_border pixel 2
+#default_floating_border pixel 2
+# TEMPORARY WORKAROUND for --> https://github.com/i3/i3/issues/5149
+for_window [title="^.*"] border pixel 4
 
 # Hide borders
 hide_edge_borders none
@@ -98,8 +122,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency -m primary \
-	-p ' ' -l 30 -x 20 -y 20 -w 400 -i -fn $font_dmenu -nb $bg -nf $fg -sf $bg -sb $aqua
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -269,7 +292,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
-# open applications at start 
+# open applications at start
 exec --no-startup-id kitty
 exec --no-startup-id firefox
 
@@ -280,7 +303,7 @@ for_window [class="Joplin"] move to  workspace $ws6
 for_window [class="Spotify"] move to workspace $ws7
 for_window [class="Geary"] move to workspace $ws8
 for_window [class="discord"] move to  workspace $ws9
-for_window [class="whatsapp-web"] move to  workspace $ws10
+for_window [class="whatsdesk"] move to  workspace $ws10
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -372,12 +395,12 @@ mode "resize" {
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # disable screensaver timeout.
 exec_always xset s "off"
-exec_always --no-startup-id xss-lock --transfer-sleep-lock -- blurlock #i3lock --nofork -i ~/Documents/wallpaper.png 
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- blurlock #i3lock --nofork -i ~/Documents/wallpaper.png
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always --no-startup-id nitrogen --restore
-exec_always --no-startup-id picom --experimental-backends -b
+exec_always --no-startup-id picom -b
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -397,54 +420,18 @@ exec_always --no-startup-id fix_xcursor
 #### BAR ####
 #############
 exec_always --no-startup-id $HOME/.i3/polybar_launcher.sh
-bindsym $mod+m killall -q polybar; $HOME/.i3/polybar_launcher.sh & 
-
-
-# # Fallback to i3bar if necessary
-# bar {
-#     i3bar_command i3bar
-# 	status_command i3status -c ~/.i3/i3status.conf
-# 	separator_symbol " "
-# 	position bottom
-# 
-# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#  	tray_output primary
-# 
-# 	bindsym button4 nop
-# 	bindsym button5 nop
-#     font $font
-# 	strip_workspace_numbers yes
-# 
-#     colors {
-#             # bar background color
-#             background $bg
-# 
-#             # text color used for blocks that do not have a color specified.
-#             statusline $fg
-# 
-#             # workspaces section
-#             #                    border     backgr.     text
-#             focused_workspace    $orange    $orange     $bg
-#             inactive_workspace   $bg        $aqua       $bg
-#             active_workspace     $bg        $blue       $bg
-#             urgent_workspace     $red       $red        $bg
-# 
-#         }
-# }
-# 
-# # hide/unhide i3status bar
-# bindsym $mod+m bar mode toggle
+bindsym $mod+m killall -q polybar; $HOME/.i3/polybar_launcher.sh &
 
 #######################
 #### i3 appearance ####
 #######################
-#       Gruvbox Theme   brdr        bg          text    indictr     chld_brdr
-client.focused          $orange     $orange     $bg     $orange     $orange
-client.focused_inactive $bg         $bg         $bg     $bg         $bg
-client.unfocused        $bg         $bg         $bg     $bg         $bg
-client.urgent           $red        $red        $bg     $red        $red
-client.placeholder      $bg         $bg         $bg     $bg         $bg
-client.background       $bg
+# Catpuccin              title         bg       text      indicator       border
+client.focused           $mauve        $mauve   $bg       $mauve          $mauve
+client.focused_inactive  $bg           $bg      $bg       $bg             $bg
+client.unfocused         $bg           $bg      $bg       $bg             $bg
+client.urgent            $peach        $peach   $bg       $peach          $peach
+client.placeholder       $bg           $bg      $bg       $bg             $bg
+client.background        $bg
 
 #############################
 ### settings for i3-gaps: ###
@@ -460,9 +447,9 @@ gaps outer 0
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+smart_gaps off
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
@@ -512,27 +499,13 @@ exec --no-startup-id redshift-gtk -c .config/redshift/redshift.config
 # unmount google Drive and mount again starting rclone daemon
 exec_always fusermount -u ~/Drives/gdrive/
 exec_always sleep 2; killall rclone
-exec_always sleep 15; rclone mount --daemon finoccha: ~/Drives/gdrive/ 
+exec_always sleep 15; rclone mount --daemon finoccha: ~/Drives/gdrive/
 
 # split windows on the short edge, github page --> https://github.com/olemartinorg/i3-alternating-layout
 exec_always --no-startup-id python ~/.i3/alternating_layouts.py
 
-# Alacritty terminal colorschemes configuration
-set $color_dir $HOME/.config/alacritty/alacritty-theme/themes
-set $light_color gruvbox_light.yaml
-set $dark_color gruvbox_material.yml
-
-# Toggle between light and dark colorscheme
-bindsym $mod+Shift+n exec alacritty-colorscheme -C $color_dir toggle $light_color $dark_color
-
-# Toggle between colorschemes and notify the name
-bindsym $mod+Shift+a exec alacritty-colorscheme -C $color_dir toggle && \
-		notify-send -t 5000 -u low $(alacritty-colorscheme -C .config/alacritty/alacritty-theme/themes/ status )
-
-
 # Passmenu keybinding
-bindsym $mod+p exec passmenu -m primary \
-	-p ' ' -l 30 -x 20 -y 20 -w 400 -i -fn $font_dmenu -nb $bg -nf $fg -sf $bg -sb $blue 
+bindsym $mod+p exec rofi-pass
 
 # unclutter helps hiding the mouse pointer after x seconds
 exec_always --no-startup-id killall unclutter
