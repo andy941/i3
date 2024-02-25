@@ -152,8 +152,8 @@ exec_always --no-startup-id sleep 1; pa-applet
 # Screen brightness controls
 #bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 #bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 10"
+bindsym XF86MonBrightnessUp exec "brightnessctl s 10%+"
+bindsym XF86MonBrightnessDown exec "brightnessctl s 10%-"
 
 # Start Applications
 #bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
@@ -524,7 +524,7 @@ exec_always --no-startup-id sleep 3; unclutter --timeout 3 & #--ignore-scrolling
 exec_always --no-startup-id xmodmap ~/.Xmodmap
 
 # Screenshot mode
-bindsym Print mode "$screenshot"
+bindsym $mod+Shift+P mode "$screenshot"
 set $screenshot Screenshot: YANK = [d]esktop [w]indow [s]election :: SAVE = [Shift+d]esktop [Shift+w]indow [Shift+s]election
 mode "$screenshot" {
 		bindsym d exec --no-startup-id "i3-scrot -dc"
