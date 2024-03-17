@@ -208,8 +208,8 @@ bindsym $mod+Shift+q split toggle
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -245,8 +245,8 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6"
 
+set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -258,7 +258,7 @@ workspace $ws2 output primary
 workspace $ws3 output primary
 workspace $ws4 output primary
 workspace $ws5 output primary
-workspace $ws6 output primary
+workspace $ws6 output eDP-1
 workspace $ws7 output eDP-1
 workspace $ws8 output eDP-1
 workspace $ws9 output eDP-1
@@ -304,13 +304,15 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 # open applications at start
 exec --no-startup-id kitty
 exec --no-startup-id firefox
+exec --no-startup-id thunderbird
+exec --no-startup-id zotero-snap
+exec --no-startup-id whatsdesk
 
 # Open applications on specific workspaces
-for_window [class="firefox"] move to workspace $ws2
-for_window [class="calibre"] move to  workspace $ws5
-for_window [class="Joplin"] move to  workspace $ws6
+# for_window [class="firefox"] move to workspace $ws2
+for_window [class="Zotero"] move to workspace $ws5
 for_window [class="Spotify"] move to workspace $ws7
-for_window [class="Geary"] move to workspace $ws8
+for_window [class="thunderbird"] move to workspace $ws8
 for_window [class="discord"] move to  workspace $ws9
 for_window [class="whatsdesk"] move to  workspace $ws10
 
@@ -342,6 +344,7 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="meteo-qt"] floating enable
 #___________________________________________________________________________________________________
 
 # switch to workspace with urgent window automatically
@@ -506,9 +509,11 @@ mode "$mode_gaps_outer" {
 exec --no-startup-id redshift-gtk -c .config/redshift/redshift.config
 
 # unmount google Drive and mount again starting rclone daemon
-exec_always fusermount -u ~/Drives/gdrive/
-exec_always sleep 2; killall rclone
-exec_always sleep 15; rclone mount --daemon finoccha: ~/Drives/gdrive/
+#exec_always fusermount -u ~/Drives/gdrive/
+# exec_always sleep 2; killall rclone
+# exec_always sleep 15; rclone mount --daemon finoccha: ~/Drives/gdrive/
+exec_always sleep 3; /home/andrea/.opam/default/bin/google-drive-ocamlfuse ~/Drives/gdrive
+
 
 # split windows on the short edge, github page --> https://github.com/olemartinorg/i3-alternating-layout
 exec_always --no-startup-id python ~/.i3/alternating_layouts.py
